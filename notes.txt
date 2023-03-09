@@ -1,0 +1,27 @@
+deadline April 1
+https://www.youtube.com/watch?v=0uz-YrfaSO8
+16k
+
+existing:
+
+
+
+software:
+
+
+hardware:
+esp32a ftdi
+
+
+ipapagawa:
+software
+cctv - detect person
+
+hardware
+wiring of gsm
+
+main function
+
+detect(cctv) -> notify(gsm) -> upload(to drive)
+
+Hardware to bring
