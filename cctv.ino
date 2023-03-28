@@ -30,11 +30,13 @@
 
 #include "camera_pins.h"
 
+
 // ===========================
 // Enter your WiFi credentials
 // ===========================
 const char* ssid = "HUAWEI Wifi";
 const char* password = "6wy8bbm9";
+bool wasInitialized = false;
 
 void startCameraServer();
 void setupLedFlash(int pin);
@@ -43,6 +45,10 @@ void setup() {
   Serial.begin(115200);
   Serial.setDebugOutput(true);
   Serial.println();
+
+  delay(5000);
+
+  
 
   camera_config_t config;
   config.ledc_channel = LEDC_CHANNEL_0;
@@ -151,5 +157,7 @@ void loop() {
   // Do nothing. Everything is done in another task by the web server
   Serial.print("RSSI: ");
   Serial.println(WiFi.RSSI());
+  
+
   delay(10000);
 }
