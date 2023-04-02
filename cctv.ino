@@ -29,19 +29,19 @@
 //#define CAMERA_MODEL_ESP32S3_CAM_LCD
 
 #include "camera_pins.h"
-
-
 // ===========================
 // Enter your WiFi credentials
 // ===========================
-const char* ssid = "HUAWEI Wifi";
-const char* password = "6wy8bbm9";
-bool wasInitialized = false;
+const char* ssid = "HUAWEI-2.4G-Anpt";
+const char* password = "5Zs2sRhN";
 
 void startCameraServer();
 void setupLedFlash(int pin);
+void makeCall();
 
 void setup() {
+  // initSIM900();
+  
   Serial.begin(115200);
   Serial.setDebugOutput(true);
   Serial.println();
@@ -151,6 +151,7 @@ void setup() {
   Serial.print("Camera Ready! Use 'http://");
   Serial.print(WiFi.localIP());
   Serial.println("' to connect");
+  makeCall();
 }
 
 void loop() {
@@ -161,3 +162,5 @@ void loop() {
 
   delay(10000);
 }
+
+

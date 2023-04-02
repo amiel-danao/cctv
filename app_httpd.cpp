@@ -11,6 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+#include "Arduino.h"
 #include "esp_http_server.h"
 #include "esp_timer.h"
 #include "esp_camera.h"
@@ -121,6 +122,13 @@ static int8_t is_enrolling = 0;
 #endif
 
 #endif
+
+void makeCall()
+{
+  // Serial2.println("ATD+639954261220;"); // ATDxxxxxxxxxx; -- watch out here for semicolon at the end!!
+  Serial.println("Call"); // print response over serial port
+  delay(1000);
+}
 
 typedef struct
 {
@@ -889,6 +897,9 @@ static esp_err_t cmd_handler(httpd_req_t *req)
         res = s->set_wb_mode(s, val);
     else if (!strcmp(variable, "ae_level"))
         res = s->set_ae_level(s, val);
+    else if (!strcmp(variable, "call"))
+        makeCall();
+        // Serial.print("Call");
 #if CONFIG_LED_ILLUMINATOR_ENABLED
     else if (!strcmp(variable, "led_intensity")) {
         led_duty = val;
@@ -1392,3 +1403,6 @@ void setupLedFlash(int pin)
     log_i("LED flash is disabled -> CONFIG_LED_ILLUMINATOR_ENABLED = 0");
     #endif
 }
+
+
+

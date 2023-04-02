@@ -222,13 +222,22 @@ body{font-family:Arial,Helvetica,sans-serif;background:#181818;color:#EFEFEF;fon
                 </figure>
             </div>
         </section>
-        <script src="tf.min.js"></script>
-        <script src="coco-ssd"></script>
+<!-- Load TensorFlow.js. This is required to use coco-ssd model. -->
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"> </script>
+<!-- Load the coco-ssd model. -->
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"> </script>
 
 
         <script>
             const imgElement = document.getElementById('stream');
             var interval = null;
+			
+			function notifyPersonDetected(){
+				const url = `${document.location.origin}/control?var=${"call"}&val=0`;
+				fetch(url).then(E => {
+					console.log(`request to ${url} finished, status: ${E.status}`)
+				});
+			}
 
             document.addEventListener('DOMContentLoaded', function () {
                 
@@ -310,6 +319,7 @@ body{font-family:Arial,Helvetica,sans-serif;background:#181818;color:#EFEFEF;fon
                                     let people = predictions.filter((p) => p.class === 'person');
                                     if (people.length > 0) {
                                         console.log('Person Predictions: ', people);
+										notifyPersonDetected();
                                     }
                                 });
 

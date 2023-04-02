@@ -1,3 +1,4 @@
+
 #define CAMERA_MODEL_M5STACK_WIDE
 #include <EloquentVision.h>
 
